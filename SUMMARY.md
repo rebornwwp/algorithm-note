@@ -6,4 +6,5 @@
   * [Subsets, Combination and Permutation](search-backtracking-sou-suo-yu-hui-su/subsets-combination-and-permutation.md)
   * [Subsets & Combinations & Combination Sum](search-backtracking-sou-suo-yu-hui-su/subsets-and-combinations-and-combination-sum.md)
   * [枚举法](search-backtracking-sou-suo-yu-hui-su/mei-ju-fa.md)
+  * [BFS](search-backtracking-sou-suo-yu-hui-su/bfs.md)
 
