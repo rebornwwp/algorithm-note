@@ -7,4 +7,5 @@
   * [Subsets & Combinations & Combination Sum](search-backtracking-sou-suo-yu-hui-su/subsets-and-combinations-and-combination-sum.md)
   * [枚举法](search-backtracking-sou-suo-yu-hui-su/mei-ju-fa.md)
   * [BFS](search-backtracking-sou-suo-yu-hui-su/bfs.md)
+  * [N-Queens](search-backtracking-sou-suo-yu-hui-su/n-queens.md)
 
