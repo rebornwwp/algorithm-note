@@ -10,7 +10,7 @@
   * [N-Queens](search-backtracking-sou-suo-yu-hui-su/n-queens.md)
 * [大数据问题](da-shu-ju-wen-ti.md)
 
-## 操作系统
+## operation system
 
 * [并行，并发](cao-zuo-xi-tong/bing-hang-bing-fa.md)
 * [同步，异步，阻塞，非阻塞](cao-zuo-xi-tong/tong-bu-yi-bu-zu-sai-fei-zu-sai.md)
