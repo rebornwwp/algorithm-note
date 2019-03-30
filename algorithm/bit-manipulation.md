@@ -293,6 +293,12 @@ def multi_three(b):
     return add(b << 1, b)
 ```
 
+一些总结
+
+1. \(n & -n\) 是找 n 的 binary 里最右面的 1 所代表的数
+2. n - \(n & -n\) 效果为减去 n 的二进制表示中最右边为 1 的 bit
+3. n + \(n & -n\) 就是直接在最低位的 1 上做进位加
+
 ```text
 作者：MoreWindows 
 来源：CSDN 
