@@ -22,4 +22,5 @@
   * [BFS](algorithm/untitled/bfs.md)
   * [N-Queens](algorithm/untitled/n-queens.md)
 * [big data](algorithm/big-data.md)
+* [bit manipulation](algorithm/bit-manipulation.md)
 
