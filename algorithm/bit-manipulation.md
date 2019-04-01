@@ -299,6 +299,16 @@ def multi_three(b):
 2. n - \(n & -n\) 效果为减去 n 的二进制表示中最右边为 1 的 bit
 3. n + \(n & -n\) 就是直接在最低位的 1 上做进位加
 4. 获得一个前面全是1后面n位是0的数字，比如11111100000,  ~\(\(1 &lt;&lt; n\) - 1\)
+5. Set union A \| B
+6. Set intersection A & B
+7. Set subtraction A & ~B
+8. Set negation ALL\_BITS ^A or ~A
+9. Set bit A \|= 1 &lt;&lt; bit
+10. Clear bit A &= ~\(1 &lt;&lt; bit\)
+11. Test bit \(A & 1 &lt;&lt; bit\) != 0
+12. Extract last bit A&-A or A&~\(A-1\) or x^\(x&\(x-1\)\)
+13. Remove last bit A&\(A-1\)
+14. Get all 1-bits ~0
 
 ```text
 作者：MoreWindows 

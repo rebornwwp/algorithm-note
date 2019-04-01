@@ -7,6 +7,8 @@
 * [并行，并发](cao-zuo-xi-tong/bing-hang-bing-fa.md)
 * [同步，异步，阻塞，非阻塞](cao-zuo-xi-tong/tong-bu-yi-bu-zu-sai-fei-zu-sai.md)
 * [IO模型](cao-zuo-xi-tong/io-mo-xing.md)
+* [TCP and UDP](cao-zuo-xi-tong/tcp-and-udp.md)
+* [HTTP and HTTPS](cao-zuo-xi-tong/http-and-https.md)
 
 ## Distributed systems
 
