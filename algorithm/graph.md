@@ -18,7 +18,11 @@
 
 如果稀疏的时候，邻接表（adjacent list）表示
 
-### 拓扑排序
+### [拓扑排序](http://www.bowdoin.edu/~ltoma/teaching/cs231/fall14/Lectures/11-topsort/topsort.pdf)
+
+拓扑排序是对有向无圈图（directed acyclic graph G = \(V, E\)）的一种排序，它使得如果存在一条vi到vj的路径，那么在排序结果中vj出现在vi之后。如果有向图中存在圈，那么拓扑排序是不存在的。
+
+#### DFS
 
 ```python
 from collections import defaultdict
@@ -79,5 +83,178 @@ g.addEdge(6, 5)
 
 print "Following is a Topological Sort of the given graph"
 g.topologicalSort()
+```
+
+
+
+#### BFS
+
+```python
+class DirectedGraphNode:
+    def __init__(self, x):
+        self.label = x
+        self.neighbors = []
+
+
+class Solution:
+    """
+    @param: graph: A list of Directed graph node
+    @return: Any topological order for the given graph.
+    """
+
+    def topSort(self, graph):
+
+        def dfs(ans, root, visited):
+            if root in visited:
+                return
+
+            for n in root.neighbors:
+                dfs(ans, n, visited)
+            ans.insert(0, root)
+            visited.append(root)
+
+        ans = []
+        visited = []
+        for root in graph:
+            dfs(ans, root, visited)
+        return ans
+
+    def topSort1(self, graph):
+        indegrees = dict()
+        for g in graph:
+            if g not in indegrees:
+                indegrees[g] = 0
+            for i in g.neighbors:
+                if i not in indegrees:
+                    indegrees[i] = 1
+                else:
+                    indegrees[i] += 1
+
+        def remove(indegrees, e):
+            if e in indegrees and indegrees[e] == 0:
+                del indegrees[e]
+
+        e_without_indegree = [g for g in graph if indegrees[g] == 0]
+        ans = []
+        count = 0
+        while len(e_without_indegree) > 0:
+            first = e_without_indegree.pop(0)
+            ans.append(first)
+            count += 1
+            remove(indegrees, first)
+            for e in first.neighbors:
+                indegrees[e] -= 1
+                if indegrees[e] == 0:
+                    e_without_indegree.append(e)
+        if count != len(graph):
+            raise IndexError
+        return ans
+
+connects = [
+    (1, (2, 3, 4)),
+    (2, (4, 5)),
+    (3, (6,)),
+    (4, (3, 6, 7)),
+    (5, (4, 7)),
+    (6, set()),
+    (7, (6,))
+]
+l = [DirectedGraphNode(i) for i in range(1, 8)]
+
+
+for i, ns in connects:
+    for n in ns:
+        l[i - 1].neighbors.append(l[n - 1])
+s = Solution()
+
+ans = s.topSort1(l)
+print([i.label for i in ans])
+```
+
+#### 无权最短路径
+
+```python
+class DirectedGraphNode:
+    def __init__(self, x):
+        self.label = x
+        self.neighbors = []
+        self.known = False
+        self.dist = None
+        self.path = None
+
+    def __str__(self):
+        return "(label: {}, dist: {})".format(self.label, self.dist)
+
+    def __repr__(self):
+        return str(self)
+
+
+class Solution:
+    """
+    @param: graph: A list of Directed graph node
+    @return: Any topological order for the given graph.
+    """
+
+    def shortest_path(self, graph, start_label):
+        """ start_label代表起始点的label值 """
+        start_g = [g for g in graph if g.label == start_label]
+        if len(start_g) == 1:
+            start_g[0].dist = 0
+        else:
+            print("wrong")
+            return
+
+        for curr_dist in range(len(graph)):
+            for g in graph:
+                if not g.known and g.dist == curr_dist:
+                    g.known = True
+                    for n in g.neighbors:
+                        if n.dist is None:
+                            n.dist = curr_dist + 1
+                            n.path = g
+
+    def shortest_path1(self, graph, start_label):
+        """ bfs """
+        start_g = [g for g in graph if g.label == start_label]
+        if len(start_g) == 1:
+            start_g[0].dist = 0
+        else:
+            print("wrong")
+            return
+
+        while start_g:
+            g = start_g.pop(0)
+            # 只是一个遍历过的标志没有其他作用
+            g.known = True
+            for n in g.neighbors:
+                if n.dist is None:
+                    n.dist = g.dist + 1
+                    n.path = g
+                    start_g.append(n)
+
+
+connects = [
+    (1, (2, 4)),
+    (2, (4, 5)),
+    (3, (1, 6)),
+    (4, (3, 5, 6, 7)),
+    (5, (7, )),
+    (6, set()),
+    (7, (6,))
+]
+l = [DirectedGraphNode(i) for i in range(1, 8)]
+
+for i, ns in connects:
+    for n in ns:
+        l[i - 1].neighbors.append(l[n - 1])
+
+s = Solution()
+
+s.shortest_path(l, 3)
+print(sorted([(i.label, i.dist) for i in l], key=lambda x: x[0]))
+
+s.shortest_path1(l, 3)
+print(sorted([(i.label, i.dist) for i in l], key=lambda x: x[0]))
+
 ```
 
